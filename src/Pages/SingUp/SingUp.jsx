@@ -2,11 +2,13 @@ import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
 import { Link } from 'react-router-dom';
+import { FcGoogle } from "react-icons/fc";
 import { AuthContext } from '../../contexts/AuthProvider';
+import { GoogleAuthProvider } from 'firebase/auth';
 
 const SingUp = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const { createUser, updateUser } = useContext(AuthContext)
+    const { createUser, updateUser, googleLogIn } = useContext(AuthContext)
     const handleSignUp = (data) => {
         // setSignUPError('');
         createUser(data.email, data.password)
@@ -19,18 +21,31 @@ const SingUp = () => {
                 }
                 updateUser(userInfo)
                     .then(() => {
-                        saveUser(data.name, data.email);
+                        saveUser(data.role, data.name, data.email);
                     })
                     .catch(err => console.log(err));
             })
             .catch(error => {
                 // console.log(error)
-                toast.success(error.message)
+                toast.error(error.message)
                 // setSignUPError(error.message)
             });
     }
-    const saveUser = (name, email) =>{
-        const user ={name, email};
+    const provider = new GoogleAuthProvider()
+    const handleGoogle = () => {
+        googleLogIn(provider)
+            .then(result => {
+                const user = result.user
+                console.log(user.displayName);
+                toast.success('google login Successfully.')
+                saveUser(user.displayName, user.email);
+            })
+            .catch(error => {
+                toast.error(error.message)
+            });
+    }
+    const saveUser = (role,name, email) => {
+        const user = {role, name, email };
         fetch('http://localhost:5000/users', {
             method: 'POST',
             headers: {
@@ -38,10 +53,10 @@ const SingUp = () => {
             },
             body: JSON.stringify(user)
         })
-        .then(res => res.json())
-        .then(data =>{
-            // setCreatedUserEmail(email);
-        })
+            .then(res => res.json())
+            .then(data => {
+                // setCreatedUserEmail(email);
+            })
     }
     return (
         <div>
@@ -72,6 +87,13 @@ const SingUp = () => {
                                     })} placeholder="email" className="input input-bordered" />
                                     {errors.email && <p className='text-red-500'>{errors.email.message}</p>}
                                 </div>
+                                <div className="form-control mt-4">
+                                    <select {...register("role")} className="select select-bordered w-full max-w-xs">
+                                        <option disabled selected>Select Your Role</option>
+                                        <option>Buyer</option>
+                                        <option>Seller</option>
+                                    </select>
+                                </div>
                                 <div className="form-control">
                                     <label className="label">
                                         <span className="label-text">Password</span>
@@ -82,6 +104,7 @@ const SingUp = () => {
                                         pattern: { value: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])/, message: 'Password must have uppercase, number and special characters' }
                                     })} placeholder="password" className="input input-bordered" />
                                     {errors.password && <p className='text-red-500'>{errors.password.message}</p>}
+
                                     <label className="label">
                                         <Link className="label-text-alt link link-hover">Forgot password?</Link>
                                     </label>
@@ -90,6 +113,9 @@ const SingUp = () => {
                                     <button className="btn btn-primary">Sing Up</button>
                                 </div>
                             </form>
+                            <div className="form-control mt-6">
+                                <button onClick={handleGoogle} className="btn btn-primary flex gap-9"><FcGoogle className='text-2xl'></FcGoogle><span>Google Sing Up</span></button>
+                            </div>
                         </div>
                     </div>
                 </div>

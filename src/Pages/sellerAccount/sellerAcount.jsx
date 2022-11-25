@@ -2,7 +2,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 
 const sellerAcount = () => {
-    const { register, handleSubmit, formState: { errors } } =useForm()
+    const { register, handleSubmit, formState: { errors } } =useForm();
     return (
         <div>
             <div className="hero min-h-screen bg-base-200">
