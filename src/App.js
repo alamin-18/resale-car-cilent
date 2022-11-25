@@ -1,4 +1,5 @@
 
+import { Toaster } from 'react-hot-toast';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './App.css';
 import Main from './Layout/Main/Main';
@@ -18,6 +19,7 @@ function App() {
   return (
     <div className="App">
       <RouterProvider router={routes}></RouterProvider>
+      <Toaster></Toaster>
     </div>
   );
 }

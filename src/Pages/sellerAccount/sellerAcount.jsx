@@ -1,34 +1,8 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
-import { toast } from 'react-hot-toast';
-import { Link } from 'react-router-dom';
-import { AuthContext } from '../../contexts/AuthProvider';
 
-const SingUp = () => {
-    const { register, handleSubmit, formState: { errors } } = useForm();
-    const { createUser, updateUser } = useContext(AuthContext)
-    const handleSignUp = (data) => {
-        // setSignUPError('');
-        createUser(data.email, data.password)
-            .then(result => {
-                const user = result.user;
-                console.log(user);
-                toast.success('User Created Successfully.')
-                const userInfo = {
-                    displayName: data.name
-                }
-                updateUser(userInfo)
-                    .then(() => {
-                        // saveUser(data.name, data.email);
-                    })
-                    .catch(err => console.log(err));
-            })
-            .catch(error => {
-                // console.log(error)
-                toast.success(error.message)
-                // setSignUPError(error.message)
-            });
-    }
+const sellerAcount = () => {
+    const { register, handleSubmit, formState: { errors } } =useForm()
     return (
         <div>
             <div className="hero min-h-screen bg-base-200">
@@ -84,4 +58,4 @@ const SingUp = () => {
     );
 };
 
-export default SingUp;
+export default sellerAcount;
