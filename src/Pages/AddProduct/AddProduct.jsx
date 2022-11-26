@@ -7,6 +7,11 @@ const AddProduct = () => {
                 <div className=''>
                     <label htmlFor="name">Product name</label>
                     <input type="text" id='name' placeholder="Product Name" className="input input-bordered w-full max-w-xs mb-7" />
+                    <select  className="select select-bordered w-full max-w-xs">
+                        <option disabled selected>Select Your Role</option>
+                        <option>Buyer</option>
+                        <option>Seller</option>
+                    </select>
                     <label htmlFor="name">Information</label>
                     <input type="text" placeholder="Information" className="input input-bordered w-full max-w-xs mb-7" />
                     <label htmlFor="location">Your Location</label>
