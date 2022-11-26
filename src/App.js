@@ -3,6 +3,7 @@ import { Toaster } from 'react-hot-toast';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './App.css';
 import Main from './Layout/Main/Main';
+import AddProduct from './Pages/AddProduct/AddProduct';
 import Dashboard from './Pages/Dashboard/Dashboard/Dashboard';
 import Home from './Pages/Home/Home/Home';
 import LogIn from './Pages/LogIn/LogIn';
@@ -18,7 +19,9 @@ function App() {
         { path: '/login', element: <LogIn></LogIn> },
         { path: '/singup', element: <SingUp></SingUp> },
         { path: '/dashboard', element: <Dashboard></Dashboard>,children:[
-          {path:'/dashboard',element:<MyProduct></MyProduct>}
+          {path:'/dashboard',element:<MyProduct></MyProduct>},
+          {path:'/dashboard/my-product',element:<MyProduct></MyProduct>},
+          {path:'/dashboard/add-product',element:<AddProduct></AddProduct>}
         ] }
 
       ]
@@ -27,7 +30,7 @@ function App() {
 
   ])
   return (
-    <div className="App">
+    <div >
       <RouterProvider router={routes}></RouterProvider>
       <Toaster></Toaster>
     </div>

@@ -28,13 +28,13 @@ const Dashboard = () => {
                         {/* <!-- Sidebar content here --> */}
                         {dataBaseUser?.role === "Seller" ?
                             <>
-                                <li><Link to="/my-product">My Product</Link></li>
-                                <li><Link to="/add-product">Add Product</Link></li>
+                                <li><Link to="/dashboard/my-product">My Product</Link></li>
+                                <li><Link to="/dashboard/add-product">Add Product</Link></li>
                                 <li><Link to="/order">Order</Link></li>
 
                             </>
                             : <>
-                                <li><Link to="/my-oder">My Oder</Link></li>
+                                <li><Link to="/dashboard/my-oder">My Oder</Link></li>
                                 {/* <li><Link to="/add-product">Add Product</Link></li>
                                 <li><Link to="/oder">Oder</Link></li> */}
                             </>
