@@ -1,27 +1,41 @@
+import { GoogleAuthProvider } from 'firebase/auth';
 import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
+import { FcGoogle } from "react-icons/fc";
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
 
 const LogIn = () => {
-    const {logIn,} = useContext(AuthContext)
+    const { logIn,googleLogIn } = useContext(AuthContext)
     const { register, handleSubmit, } = useForm();
-    const handleLogIn = data =>{
-        logIn(data.email,data.password)
-        .then((userCredential) => {
-            // Signed in 
-            const user = userCredential.user;
-            toast.success("Log In Successfully")
-            console.log(user);
-            // ...
-          })
-          .catch((error) => {
-            // const errorCode = error.code;
-            const errorMessage = error.message;
-            toast.error(errorMessage)
-            console.log(error)
-          });
+    const handleLogIn = data => {
+        logIn(data.email, data.password)
+            .then((userCredential) => {
+                // Signed in 
+                const user = userCredential.user;
+                toast.success("Log In Successfully")
+                console.log(user);
+                // ...
+            })
+            .catch((error) => {
+                // const errorCode = error.code;
+                const errorMessage = error.message;
+                toast.error(errorMessage)
+                console.log(error)
+            });
+    }
+    const provider = new GoogleAuthProvider()
+    const handleGoogle = () => {
+        googleLogIn(provider)
+            .then(result => {
+                const user = result.user
+                console.log(user.displayName);
+                toast.success('google login Successfully.')
+            })
+            .catch(error => {
+                toast.error(error.message)
+            });
     }
 
     return (
@@ -54,6 +68,9 @@ const LogIn = () => {
                                     <button className="btn btn-primary">Login</button>
                                 </div>
                             </form>
+                            <div className="form-control mt-6">
+                                <button onClick={handleGoogle} className="btn btn-primary flex gap-9"><FcGoogle className='text-2xl'></FcGoogle><span>Google Sing Up</span></button>
+                            </div>
                         </div>
                     </div>
                 </div>

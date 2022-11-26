@@ -37,8 +37,9 @@ const SingUp = () => {
             .then(result => {
                 const user = result.user
                 console.log(user.displayName);
+                const role = {role:"Buyer",}
                 toast.success('google login Successfully.')
-                saveUser(user.displayName, user.email);
+                saveUser(role.role,user.displayName, user.email);
             })
             .catch(error => {
                 toast.error(error.message)

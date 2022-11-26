@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { HiBars3 } from "react-icons/hi2";
 import { AuthContext } from '../../../contexts/AuthProvider';
 
 const Navber = () => {
@@ -40,9 +41,7 @@ const Navber = () => {
                         {menuItems}
                     </ul>
                 </div>
-                {/* <div className="navbar-end">
-                    <a className="btn">Get started</a>
-                </div> */}
+                <label htmlFor="dashboard-drawer" className='text-2xl lg:hidden' ><HiBars3></HiBars3></label>
             </div>
         </div>
     );
