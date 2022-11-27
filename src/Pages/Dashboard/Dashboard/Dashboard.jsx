@@ -26,19 +26,33 @@ const Dashboard = () => {
                     <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
                     <ul className="menu p-4 w-80 bg-base-100 text-base-content">
                         {/* <!-- Sidebar content here --> */}
-                        {dataBaseUser?.role === "Seller" ?
+                       
+                            
+                            {
+                                dataBaseUser?.role === 'admin' ? <>
+                                <li><Link to="/dashboard/all-user">All User</Link></li>
+                                <li><Link to="/dashboard/total-order">Total Order</Link></li>
+                                <li><Link to="/dashboard/report">Report</Link></li>
+                                <li><Link to="/dashboard/ads">Total Ads</Link></li>
+                                
+                                </> : <>
+                                
+                                {dataBaseUser?.role === "Seller" ?
                             <>
                                 <li><Link to="/dashboard/my-product">My Product</Link></li>
                                 <li><Link to="/dashboard/add-product">Add Product</Link></li>
-                                <li><Link to="/order">Order</Link></li>
+                                <li><Link to="/dashboard/seller-order">Order</Link></li>
 
                             </>
                             : <>
-                                <li><Link to="/dashboard/my-oder">My Oder</Link></li>
+                                <li><Link to="/dashboard/my-order">My Oder</Link></li>
                                 {/* <li><Link to="/add-product">Add Product</Link></li>
                                 <li><Link to="/oder">Oder</Link></li> */}
                             </>
                             }
+                                </>
+                            }
+                        
 
                     </ul>
                 </div>

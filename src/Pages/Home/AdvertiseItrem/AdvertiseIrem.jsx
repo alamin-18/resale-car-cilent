@@ -4,7 +4,7 @@ import SingleAds from '../singlesAds/SingleAds';
 
 const AdvertiseIrem = () => {
     //http://localhost:5000/advertise
-    const { data: advertise = [], refetch } = useQuery({
+    const { data: advertise = [], } = useQuery({
         queryKey: ['advertise'],
         queryFn: async () => {
             const res = await fetch('http://localhost:5000/advertise');

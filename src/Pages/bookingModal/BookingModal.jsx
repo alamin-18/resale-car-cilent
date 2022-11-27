@@ -20,7 +20,8 @@ const BookingModal = ({ order, setOrder }) => {
             phone,
             product: order.name,
             price: order.salePrice,
-            sellerEmail: order.email
+            sellerEmail: order.email,
+            image: order.image
         }
 
         fetch('http://localhost:5000/orders', {
@@ -34,6 +35,7 @@ const BookingModal = ({ order, setOrder }) => {
             .then(data => {
                 console.log(data);
                 if (data.acknowledged) {
+                    setOrder(null)
                     toast.success('Order confirmed');
                 }
                 else{
