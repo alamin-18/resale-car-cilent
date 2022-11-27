@@ -3,7 +3,7 @@ import React from 'react';
 import Products from '../Products/Products';
 
 const Shop = () => {
-    const { data: products = [], refetch } = useQuery({
+    const { data: products = [],  } = useQuery({
         queryKey: ['products'],
         queryFn: async () => {
             const res = await fetch('http://localhost:5000/products');

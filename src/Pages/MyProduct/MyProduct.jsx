@@ -1,9 +1,16 @@
 import { useQuery } from '@tanstack/react-query';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../contexts/AuthProvider';
+import { toast } from 'react-hot-toast';
+import ConfirmationModal from './../Shared/ConfirmationModal/ConfirmationModal';
 
 const MyProduct = () => {
     const { user } = useContext(AuthContext)
+    const [deletingProduct, setDeletingProduct] = useState(null);
+
+    const closeModal = () => {
+        setDeletingProduct(null)
+    }
     const { data: products = [], refetch } = useQuery({
         queryKey: ['products'],
         queryFn: async () => {
@@ -14,27 +21,47 @@ const MyProduct = () => {
     });
     const myProduct = products.filter(product => product?.email === user?.email)
 
-    const handleAds = id =>{
-        fetch('http://localhost:5000/products', {
+    const handleAds = product =>{
+        fetch('http://localhost:5000/advertise', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
                 
             },
-            body: JSON.stringify(products)
+            body: JSON.stringify(product)
         })
             .then(res => res.json())
             .then(result => {
                 console.log(result);
-                toast.success(`${data.name} is added successfully`);
-                navigate('/dashboard/my-product')
+                toast.success(`Advertise successfully`);
+                // navigate('/dashboard/my-product')
+            })
+        
+    }
+
+    const handleDeleteProduct = product =>{
+       
+            fetch(`http://localhost:5000/products/${product._id}`, {
+                method: 'DELETE', 
+                headers: {
+                    // authorization: `bearer ${localStorage.getItem('accessToken')}`
+                }
+            })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                if(data.deletedCount > 0){
+                    refetch();
+                    toast.success(`product ${product.name} deleted successfully`)
+                }
             })
     }
 
     return (
         <div>
             <div className="overflow-x-auto">
-                <table className="table w-full">
+                {
+                    myProduct.length >0 &&<table className="table w-full">
                     <thead>
                         <tr>
                             <th></th>
@@ -58,13 +85,25 @@ const MyProduct = () => {
                                 </td>
                                 <td>{product.name}</td>
                                 <td><button className="btn btn-secondary">Available</button></td>
-                                <td><button onClick={()=>handleAds(product._id)} className="btn btn-outline btn-secondary">Ads Now</button></td>
-                                <td><button className="btn btn-secondary">Delete</button></td>
+                                <td><button onClick={()=>handleAds(product)} className="btn btn-outline btn-secondary">Ads Now</button></td>
+                                <td> <label onClick={() => setDeletingProduct(product)} htmlFor="confirmation-modal" className="btn btn-sm btn-error">Delete</label></td>
                             </tr>)
                         }
                     </tbody>
                 </table>
+                }
             </div>
+            {
+                deletingProduct && <ConfirmationModal
+                    title={`Are you sure you want to delete?`}
+                    message={`If you delete ${deletingProduct.name}. It cannot be undone.`}
+                    successAction = {handleDeleteProduct}
+                    successButtonName="Delete"
+                    modalData = {deletingProduct}
+                    closeModal = {closeModal}
+                >
+                </ConfirmationModal>
+            }
         </div>
     );
 };

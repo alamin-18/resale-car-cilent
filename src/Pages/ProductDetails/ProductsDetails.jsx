@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
+import BookingModal from '../bookingModal/BookingModal';
+
 
 const ProductsDetails = () => {
     const product = useLoaderData()
+    const [order,setOrder] =useState()
     return (
         <div className='lg:w-2/4 mx-auto my-40'>
             <div  className='border w-96'>
@@ -14,9 +17,24 @@ const ProductsDetails = () => {
                 <p>Location: {product.location}</p>
                 <p> Use: {product.use}</p>
                 <p>Use Mils:  {product.useMils}</p>
-                <button className="btn btn-secondary my-10 w-full">Button</button>
+                
+                <label
+                        htmlFor="bookModal"
+                        className="btn btn-primary text-white"
+                        onClick={() => setOrder(product)}
+                    >Book Now</label>
             </div>
             </div>
+            
+            {
+                order && <BookingModal
+            
+                order={order}
+                setOrder={setOrder}
+                >
+    
+                </BookingModal>
+            }
         </div>
     );
 };
