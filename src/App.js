@@ -13,7 +13,7 @@ import Home from './Pages/Home/Home/Home';
 import LogIn from './Pages/LogIn/LogIn';
 import MyProduct from './Pages/MyProduct/MyProduct';
 import ProductsDetails from './Pages/ProductDetails/ProductsDetails';
-import Products from './Pages/Products/Products';
+
 import SellerOrder from './Pages/SellerOrder/SellerOrder';
 import Shop from './Pages/Shop/Shop';
 import SingUp from './Pages/SingUp/SingUp';

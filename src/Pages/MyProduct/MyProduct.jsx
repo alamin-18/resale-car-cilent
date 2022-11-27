@@ -22,6 +22,7 @@ const MyProduct = () => {
     const myProduct = products.filter(product => product?.email === user?.email)
 
     const handleAds = product =>{
+       
         fetch('http://localhost:5000/advertise', {
             method: 'POST',
             headers: {
@@ -85,8 +86,8 @@ const MyProduct = () => {
                                 </td>
                                 <td>{product.name}</td>
                                 <td><button className="btn btn-secondary">Available</button></td>
-                                <td><button onClick={()=>handleAds(product)} className="btn btn-outline btn-secondary">Ads Now</button></td>
-                                <td> <label onClick={() => setDeletingProduct(product)} htmlFor="confirmation-modal" className="btn btn-sm btn-error">Delete</label></td>
+                                <td><button  onClick={()=>handleAds(product)} className="btn btn-outline btn-secondary">Ads Now</button></td>
+                                <td> <label  onClick={() => setDeletingProduct(product)} htmlFor="confirmation-modal" className="btn btn-sm btn-error">Delete</label></td>
                             </tr>)
                         }
                     </tbody>

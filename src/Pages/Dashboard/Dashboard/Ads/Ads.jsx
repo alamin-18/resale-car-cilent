@@ -1,8 +1,14 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
+import axios from 'axios';
+import React, { useState } from 'react';
 import { toast } from 'react-hot-toast';
+import ConfirmationModal from '../../../Shared/ConfirmationModal/ConfirmationModal';
 
 const Ads = () => {
+    const [deletingAds, setDeletingAds] = useState(null);
+    const closeModal = () => {
+        setDeletingAds(null)
+    }
     const { data: advertise = [], refetch } = useQuery({
         queryKey: ['advertise'],
         queryFn: async () => {
@@ -11,22 +17,18 @@ const Ads = () => {
             return data;
         }
     });
-    const handleDeleteAds = product =>{
-       
-        fetch(`http://localhost:5000/products/${product._id}`, {
-            method: 'DELETE', 
-            headers: {
-                // authorization: `bearer ${localStorage.getItem('accessToken')}`
-            }
-        })
-        .then(res => res.json())
-        .then(data => {
-            console.log(data)
-            if(data.deletedCount > 0){
+    const handleDeleteAds = async (ads) =>{
+       console.log(ads._id);
+        try{
+            const {data} = await axios.delete(`http://localhost:5000/advertise/${ads._id}`)
+            if(data.msg){
                 refetch();
-                toast.success(`${product.name} deleted successfully`)
+                toast.success(`product ${ads.name} deleted successfully`)
             }
-        })
+        }
+        catch(err){
+            console.log(err)
+        }
 }
     return (
         <div>
@@ -57,14 +59,25 @@ const Ads = () => {
                                     <td>{ads.name}</td>
                                     <td>{ads.email}</td>
 
-                                    <td><button className="btn btn-outline btn-secondary">delete</button></td>
-                                    <td> </td>
+                                    <td><label onClick={() => setDeletingAds(ads)} htmlFor="confirmation-modal" className="btn btn-sm btn-error">Delete</label></td>
+                                    
                                 </tr>)
                             }
                         </tbody>
                     </table>
                 }
             </div>
+            {
+                deletingAds && <ConfirmationModal
+                    title={`Are you sure you want to delete?`}
+                    message={`If you delete ${deletingAds.name}. It cannot be undone.`}
+                    successAction = {handleDeleteAds}
+                    successButtonName="Delete"
+                    modalData = {deletingAds}
+                    closeModal = {closeModal}
+                >
+                </ConfirmationModal>
+            }
         </div>
     );
 };
