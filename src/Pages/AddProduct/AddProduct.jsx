@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from './../../contexts/AuthProvider';
 
 const AddProduct = () => {
+    const {user} = useContext(AuthContext)
     const { register, handleSubmit, formState: { errors } } = useForm();
     const navigate = useNavigate()
     // const imageHostKey = "886466fd5e00ad4c7206d08842e7b55e"
@@ -28,7 +30,8 @@ const AddProduct = () => {
                         use: data.use,
                         useMils: data.useMils,
                         location: data.location,
-                        image: imgData.data.url
+                        image: imgData.data.url,
+                        email: user.email
                     }
 
                     // save doctor information to the database
@@ -36,7 +39,6 @@ const AddProduct = () => {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json',
-                            // authorization: `bearer ${localStorage.getItem('accessToken')}`
                         },
                         body: JSON.stringify(products)
                     })
