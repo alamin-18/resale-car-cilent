@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 const AllUser = () => {
     const [users, setUsers] = useState([])
     useEffect(() => {
-        fetch("http://localhost:5000/users")
+        fetch("https://assignment-12-server-three.vercel.app/users")
             .then(res => res.json())
             .then(data => setUsers(data))
     }, [])

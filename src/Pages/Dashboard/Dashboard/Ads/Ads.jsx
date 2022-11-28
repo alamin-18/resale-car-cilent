@@ -12,7 +12,7 @@ const Ads = () => {
     const { data: advertise = [], refetch } = useQuery({
         queryKey: ['advertise'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/advertise');
+            const res = await fetch('https://assignment-12-server-three.vercel.app/advertise');
             const data = await res.json();
             return data;
         }
@@ -20,7 +20,7 @@ const Ads = () => {
     const handleDeleteAds = async (ads) =>{
        console.log(ads._id);
         try{
-            const {data} = await axios.delete(`http://localhost:5000/advertise/${ads._id}`)
+            const {data} = await axios.delete(`https://assignment-12-server-three.vercel.app/advertise/${ads._id}`)
             if(data.msg){
                 refetch();
                 toast.success(`product ${ads.name} deleted successfully`)

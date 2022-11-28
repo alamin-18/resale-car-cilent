@@ -2,11 +2,11 @@ import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 
 const Reported = () => {
-    //http://localhost:5000/repoted
+    //https://assignment-12-server-three.vercel.app/repoted
     const { data: reported = [], } = useQuery({
         queryKey: ['reported'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/repoted');
+            const res = await fetch('https://assignment-12-server-three.vercel.app/repoted');
             const data = await res.json();
             return data;
         }

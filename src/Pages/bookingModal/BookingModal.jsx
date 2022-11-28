@@ -24,7 +24,7 @@ const BookingModal = ({ order, setOrder }) => {
             image: order.image
         }
 
-        fetch('http://localhost:5000/orders', {
+        fetch('https://assignment-12-server-three.vercel.app/orders', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

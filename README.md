@@ -7,7 +7,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - 123456A@
 
 ## Features
--	Firebase authentication ,Used Product sele
+-	Firebase authentication and Used Product sele
 -	Seller added products. and seller Verified
 -   Buyer buy product and Report product to admin
 -	My Produtc route Seller can see his/her items, added and manage item.

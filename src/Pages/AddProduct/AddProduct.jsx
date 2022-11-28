@@ -9,22 +9,24 @@ const AddProduct = () => {
     const {user} = useContext(AuthContext)
     const { register, handleSubmit,  } = useForm();
     const navigate = useNavigate()
-    // const imageHostKey = "886466fd5e00ad4c7206d08842e7b55e"
+    
 
     const { data: catagory = [], refetch } = useQuery({
         queryKey: ['catagory'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/catagory');
+            const res = await fetch('https://assignment-12-server-three.vercel.app/catagory');
             const data = await res.json();
             return data;
         }
     });
+// const imageHostKey = "886466fd5e00ad4c7206d08842e7b55e"
+ const imageHostKey = process.env.REACT_APP_imageHostKey
 
     const handleProduct = data => {
         const image = data.image[0];
         const formData = new FormData();
         formData.append('image', image);
-        const url = `https://api.imgbb.com/1/upload?key=886466fd5e00ad4c7206d08842e7b55e`
+        const url = `https://api.imgbb.com/1/upload?key=${imageHostKey}`
         fetch(url, {
             method: 'POST',
             body: formData
@@ -48,7 +50,7 @@ const AddProduct = () => {
                     }
 
                     // save doctor information to the database
-                    fetch('http://localhost:5000/products', {
+                    fetch('https://assignment-12-server-three.vercel.app/products', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json',

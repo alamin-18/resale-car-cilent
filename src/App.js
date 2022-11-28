@@ -40,11 +40,11 @@ function App() {
         { path: '/blog', element: <Blog></Blog>},
         { path: '/catagory/:id', element: <PrivateRoute><CatagoryProduct></CatagoryProduct></PrivateRoute>,
         loader:({ params }) => {
-          return fetch(`http://localhost:5000/catagory/${params.id}`)}
+          return fetch(`https://assignment-12-server-three.vercel.app/catagory/${params.id}`)}
       },
         { path: '/details/:id', element: <PrivateRoute><ProductsDetails></ProductsDetails></PrivateRoute>,
         loader:({ params }) => {
-          return fetch(`http://localhost:5000/products/${params.id}`)}
+          return fetch(`https://assignment-12-server-three.vercel.app/products/${params.id}`)}
       },
         { path: '/dashboard', element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>, errorElement:<ErrorPage></ErrorPage>,children:[
           {path:'/dashboard',element:<PrivateRoute><MyProduct></MyProduct></PrivateRoute>},

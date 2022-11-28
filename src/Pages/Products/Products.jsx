@@ -7,7 +7,7 @@ const Products = ({ product }) => {
 
     const [users, setUsers] = useState([])
     useEffect(() => {
-        fetch("http://localhost:5000/users")
+        fetch("https://assignment-12-server-three.vercel.app/users")
             .then(res => res.json())
             .then(data => setUsers(data))
     }, [])
@@ -16,7 +16,7 @@ const Products = ({ product }) => {
 
     const handleReport = product =>{
         console.log(product);
-        fetch('http://localhost:5000/repoted', {
+        fetch('https://assignment-12-server-three.vercel.app/repoted', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',   

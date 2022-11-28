@@ -3,11 +3,11 @@ import { useQuery } from '@tanstack/react-query';
 import Products from '../../Products/Products';
 
 const AdvertiseIrem = () => {
-    //http://localhost:5000/advertise
+    //https://assignment-12-server-three.vercel.app/advertise
     const { data: advertise = [], } = useQuery({
         queryKey: ['advertise'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/advertise');
+            const res = await fetch('https://assignment-12-server-three.vercel.app/advertise');
             const data = await res.json();
             return data;
         }

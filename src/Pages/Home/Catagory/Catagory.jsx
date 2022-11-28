@@ -8,7 +8,7 @@ const Catagory = () => {
     const { data: catagory = [], } = useQuery({
         queryKey: ['catagory'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/catagory');
+            const res = await fetch('https://assignment-12-server-three.vercel.app/catagory');
             const data = await res.json();
             if(data){
                 setloading(false)

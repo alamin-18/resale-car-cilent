@@ -14,7 +14,7 @@ const MyProduct = () => {
     const { data: products = [], refetch } = useQuery({
         queryKey: ['products'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/products');
+            const res = await fetch('https://assignment-12-server-three.vercel.app/products');
             const data = await res.json();
             return data;
         }
@@ -23,7 +23,7 @@ const MyProduct = () => {
 
     const handleAds = product =>{
        
-        fetch('http://localhost:5000/advertise', {
+        fetch('https://assignment-12-server-three.vercel.app/advertise', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -41,7 +41,7 @@ const MyProduct = () => {
 
     const handleDeleteProduct = product =>{
        
-            fetch(`http://localhost:5000/products/${product._id}`, {
+            fetch(`https://assignment-12-server-three.vercel.app/products/${product._id}`, {
                 method: 'DELETE', 
                 headers: {
                     

@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 const TotalOrder = () => {
     const [order, setOrder] = useState([])
     useEffect(() => {
-        axios.get("http://localhost:5000/orders")
+        axios.get("https://assignment-12-server-three.vercel.app/orders")
             .then(res => {
                 const data = res.data;
                 setOrder(data)

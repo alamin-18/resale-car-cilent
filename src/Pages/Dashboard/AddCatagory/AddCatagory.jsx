@@ -10,7 +10,7 @@ const AddCatagory = () => {
         const cat = {
             catagory
         }
-        fetch('http://localhost:5000/catagory', {
+        fetch('https://assignment-12-server-three.vercel.app/catagory', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
