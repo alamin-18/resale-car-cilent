@@ -31,6 +31,8 @@ const Dashboard = () => {
                             {
                                 dataBaseUser?.role === 'admin' ? <>
                                 <li><Link to="/dashboard/all-user">All User</Link></li>
+                                <li><Link to="/dashboard/all-seller">All Seller</Link></li>
+                                <li><Link to="/dashboard/all-buyer">All Buyer</Link></li>
                                 <li><Link to="/dashboard/total-order">Total Order</Link></li>
                                 <li><Link to="/dashboard/report">Report</Link></li>
                                 <li><Link to="/dashboard/ads">Total Ads</Link></li>
@@ -40,14 +42,14 @@ const Dashboard = () => {
                                 {dataBaseUser?.role === "Seller" ?
                             <>
                                 <li><Link to="/dashboard/my-product">My Product</Link></li>
+                                <li><Link to="/dashboard/add-catagory">Add Catagory</Link></li>
                                 <li><Link to="/dashboard/add-product">Add Product</Link></li>
                                 <li><Link to="/dashboard/seller-order">Order</Link></li>
 
                             </>
                             : <>
                                 <li><Link to="/dashboard/my-order">My Oder</Link></li>
-                                {/* <li><Link to="/add-product">Add Product</Link></li>
-                                <li><Link to="/oder">Oder</Link></li> */}
+                                
                             </>
                             }
                                 </>

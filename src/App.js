@@ -4,6 +4,10 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './App.css';
 import Main from './Layout/Main/Main';
 import AddProduct from './Pages/AddProduct/AddProduct';
+import CatagoryProduct from './Pages/CatagoryProduct/CatagoryProduct';
+import AddCatagory from './Pages/Dashboard/AddCatagory/AddCatagory';
+import AllBuyer from './Pages/Dashboard/AllBuyer/AllBuyer';
+import AllSller from './Pages/Dashboard/AllSeller/AllSller';
 import AllUser from './Pages/Dashboard/AllUser/AllUser';
 import Ads from './Pages/Dashboard/Dashboard/Ads/Ads';
 import Dashboard from './Pages/Dashboard/Dashboard/Dashboard';
@@ -27,6 +31,10 @@ function App() {
         { path: '/login', element: <LogIn></LogIn> },
         { path: '/singup', element: <SingUp></SingUp> },
         { path: '/shop', element: <Shop></Shop> },
+        { path: '/catagory/:id', element: <CatagoryProduct></CatagoryProduct>,
+        loader:({ params }) => {
+          return fetch(`http://localhost:5000/catagory/${params.id}`)}
+      },
         { path: '/details/:id', element: <ProductsDetails></ProductsDetails>,
         loader:({ params }) => {
           return fetch(`http://localhost:5000/products/${params.id}`)}
@@ -40,6 +48,9 @@ function App() {
           {path:'/dashboard/seller-order',element:<SellerOrder></SellerOrder>},
           {path:'/dashboard/total-order',element:<TotalOrder></TotalOrder>},
           {path:'/dashboard/ads',element:<Ads></Ads>},
+          {path:'/dashboard/all-buyer',element:<AllBuyer></AllBuyer>},
+          {path:'/dashboard/all-seller',element:<AllSller></AllSller>},
+          {path:'/dashboard/add-catagory',element:<AddCatagory></AddCatagory>},
           {path:'/dashboard/all-user',element:<AllUser></AllUser>}
         ] }
 

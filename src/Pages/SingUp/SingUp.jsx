@@ -56,7 +56,6 @@ const SingUp = () => {
         })
             .then(res => res.json())
             .then(data => {
-                // setCreatedUserEmail(email);
             })
     }
     return (

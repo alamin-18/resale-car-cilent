@@ -45,7 +45,7 @@ const MyProduct = () => {
             fetch(`http://localhost:5000/products/${product._id}`, {
                 method: 'DELETE', 
                 headers: {
-                    // authorization: `bearer ${localStorage.getItem('accessToken')}`
+                    
                 }
             })
             .then(res => res.json())
