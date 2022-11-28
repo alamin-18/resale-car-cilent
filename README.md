@@ -2,6 +2,18 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Admin Email and password
+- alamin11@gmail.com
+- 123456A@
+
+## Features
+-	Firebase authentication ,Used Product sele
+-	Seller added products. and seller Verified
+-   Buyer buy product and Report product to admin
+-	My Produtc route Seller can see his/her items, added and manage item.
+-	Admin Route Show all buyer and seller info and admin delete seller and buyer
+ # Technology: Tailwind CSS, ReactJS,NodeJS, MongoDB, ExpressJS.
+
 ## Available Scripts
 
 In the project directory, you can run:
