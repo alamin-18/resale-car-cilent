@@ -3,12 +3,18 @@ import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
 import { FcGoogle } from "react-icons/fc";
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
 
 const LogIn = () => {
     const { logIn,googleLogIn } = useContext(AuthContext)
     const { register, handleSubmit, } = useForm();
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    const from = location.state?.from?.pathname || '/';
+    console.log(from)
+
     const handleLogIn = data => {
         logIn(data.email, data.password)
             .then((userCredential) => {
@@ -16,7 +22,7 @@ const LogIn = () => {
                 const user = userCredential.user;
                 toast.success("Log In Successfully")
                 console.log(user);
-                // ...
+                navigate(from, { replace: true });
             })
             .catch((error) => {
                 // const errorCode = error.code;

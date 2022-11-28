@@ -14,13 +14,17 @@ const AdvertiseIrem = () => {
     });
     return (
         <div>
-            <h1 className="text-4xl text-center">Advertise Item</h1>
-            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 md:w-3/4  lg:w-3/4 mx-auto my-4'>
-            
             {
-                advertise.map(ads => <SingleAds key={ads._id} ads={ads}></SingleAds>)
+                advertise.length && <>
+                    <h1 className="text-4xl text-center">Advertise Item</h1>
+                    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 md:w-3/4  lg:w-3/4 mx-auto my-4'>
+
+                        {
+                            advertise.map(ads => <SingleAds key={ads._id} ads={ads}></SingleAds>)
+                        }
+                    </div>
+                </>
             }
-        </div>
         </div>
     );
 };

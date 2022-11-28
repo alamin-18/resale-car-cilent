@@ -21,6 +21,7 @@ import ProductsDetails from './Pages/ProductDetails/ProductsDetails';
 import SellerOrder from './Pages/SellerOrder/SellerOrder';
 import Shop from './Pages/Shop/Shop';
 import SingUp from './Pages/SingUp/SingUp';
+import PrivateRoute from './PrivateRoute/PrivateRoute';
 
 
 function App() {
@@ -31,27 +32,27 @@ function App() {
         { path: '/login', element: <LogIn></LogIn> },
         { path: '/singup', element: <SingUp></SingUp> },
         { path: '/shop', element: <Shop></Shop> },
-        { path: '/catagory/:id', element: <CatagoryProduct></CatagoryProduct>,
+        { path: '/catagory/:id', element: <PrivateRoute><CatagoryProduct></CatagoryProduct></PrivateRoute>,
         loader:({ params }) => {
           return fetch(`http://localhost:5000/catagory/${params.id}`)}
       },
-        { path: '/details/:id', element: <ProductsDetails></ProductsDetails>,
+        { path: '/details/:id', element: <PrivateRoute><ProductsDetails></ProductsDetails></PrivateRoute>,
         loader:({ params }) => {
           return fetch(`http://localhost:5000/products/${params.id}`)}
       },
-        { path: '/dashboard', element: <Dashboard></Dashboard>,children:[
-          {path:'/dashboard',element:<MyProduct></MyProduct>},
-          {path:'/dashboard',element:<MyOrder></MyOrder>},
-          {path:'/dashboard/my-order',element:<MyOrder></MyOrder>},
-          {path:'/dashboard/my-product',element:<MyProduct></MyProduct>},
-          {path:'/dashboard/add-product',element:<AddProduct></AddProduct>},
-          {path:'/dashboard/seller-order',element:<SellerOrder></SellerOrder>},
-          {path:'/dashboard/total-order',element:<TotalOrder></TotalOrder>},
-          {path:'/dashboard/ads',element:<Ads></Ads>},
-          {path:'/dashboard/all-buyer',element:<AllBuyer></AllBuyer>},
-          {path:'/dashboard/all-seller',element:<AllSller></AllSller>},
-          {path:'/dashboard/add-catagory',element:<AddCatagory></AddCatagory>},
-          {path:'/dashboard/all-user',element:<AllUser></AllUser>}
+        { path: '/dashboard', element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,children:[
+          {path:'/dashboard',element:<PrivateRoute><MyProduct></MyProduct></PrivateRoute>},
+          {path:'/dashboard',element:<PrivateRoute><MyOrder></MyOrder></PrivateRoute>},
+          {path:'/dashboard/my-order',element:<PrivateRoute><MyOrder></MyOrder></PrivateRoute>},
+          {path:'/dashboard/my-product',element:<PrivateRoute><MyProduct></MyProduct></PrivateRoute>},
+          {path:'/dashboard/add-product',element:<PrivateRoute><AddProduct></AddProduct></PrivateRoute>},
+          {path:'/dashboard/seller-order',element:<PrivateRoute><SellerOrder></SellerOrder></PrivateRoute>},
+          {path:'/dashboard/total-order',element:<PrivateRoute><TotalOrder></TotalOrder></PrivateRoute>},
+          {path:'/dashboard/ads',element:<PrivateRoute><Ads></Ads></PrivateRoute>},
+          {path:'/dashboard/all-buyer',element:<PrivateRoute><AllBuyer></AllBuyer></PrivateRoute>},
+          {path:'/dashboard/all-seller',element:<PrivateRoute><AllSller></AllSller></PrivateRoute>},
+          {path:'/dashboard/add-catagory',element:<PrivateRoute><AddCatagory></AddCatagory></PrivateRoute>},
+          {path:'/dashboard/all-user',element:<PrivateRoute><AllUser></AllUser></PrivateRoute>}
         ] }
 
       ]

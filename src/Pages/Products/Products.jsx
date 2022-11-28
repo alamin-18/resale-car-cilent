@@ -1,8 +1,17 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const Products = ({ product }) => {
+
+    const [users, setUsers] = useState([])
+    useEffect(() => {
+        fetch("http://localhost:5000/users")
+            .then(res => res.json())
+            .then(data => setUsers(data))
+    }, [])
     
+    
+
     return (
         <div>
             <div className="card w-96 bg-base-100 shadow-xl rounded-none">

@@ -44,6 +44,7 @@ const AllSller = () => {
                             <th>Name</th>
                             <th>Email</th>
                             <th>Role</th>
+                            <th>Verified</th>
                             <th>Delete</th>
                         </tr>
                     </thead>
@@ -55,6 +56,7 @@ const AllSller = () => {
                                 <td>{seller.name}</td>
                                 <td>{seller.email}</td>
                                 <td>{seller.role}</td>
+                                <td><button className="btn btn-active btn-accent" onClick={()=>handleVerified(seller._id)}>Verified Now</button></td>
                                 <td><label  onClick={() => setDeletingSeller(seller)} htmlFor="confirmation-modal" className="btn btn-sm btn-error">Delete</label></td>
                             </tr>)
                         }
