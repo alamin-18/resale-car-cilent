@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { FcApproval } from "react-icons/fc";
+import { toast } from 'react-hot-toast';
 
 const Products = ({ product }) => {
 
@@ -9,8 +11,25 @@ const Products = ({ product }) => {
             .then(res => res.json())
             .then(data => setUsers(data))
     }, [])
-    
-    
+
+    const verifiedUser = users?.find(user => user?.email === product?.email)
+
+    const handleReport = product =>{
+        console.log(product);
+        fetch('http://localhost:5000/repoted', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json',   
+            },
+            body: JSON.stringify(product)
+        })
+            .then(res => res.json())
+            .then(result => {
+                console.log(result);
+                toast.success(`Reported successfully`);
+            })
+        
+    }
 
     return (
         <div>
@@ -19,11 +38,17 @@ const Products = ({ product }) => {
                 <div className="card-body">
                     <h2 className="card-title">{product.name}</h2>
                     <p>
-                    <div className="badge badge-secondary">{product.condition}</div>
+                        <div className="badge badge-secondary">{product.condition}</div>
                     </p>
                     <p><span>Orginal Price: </span>$ {product.orginalPrice}</p>
                     <p><span>Sale Price: </span>$ {product.salePrice}</p>
-                    <div className="card-actions justify-end">
+                    <div>
+                        {
+                                verifiedUser?.verified ? <><h1 className='text-2xl flex items-center'><span>Seller: {verifiedUser?.name}</span><FcApproval></FcApproval></h1></> :<><h1 className='text-2xl'>Seller: {verifiedUser?.name}</h1></>
+                            }
+                    </div>
+                    <div className="card-actions justify-between ">
+                        <button onClick={()=>handleReport(product)} className="btn btn-secondary btn-outline">Report</button>
                         <Link to={`../details/${product._id}`}><button className="btn btn-primary">details</button></Link>
                     </div>
                 </div>

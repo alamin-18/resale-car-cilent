@@ -34,7 +34,7 @@ const Dashboard = () => {
                                 <li><Link to="/dashboard/all-seller">All Seller</Link></li>
                                 <li><Link to="/dashboard/all-buyer">All Buyer</Link></li>
                                 <li><Link to="/dashboard/total-order">Total Order</Link></li>
-                                <li><Link to="/dashboard/report">Report</Link></li>
+                                <li><Link to="/dashboard/reported">Report</Link></li>
                                 <li><Link to="/dashboard/ads">Total Ads</Link></li>
                                 
                                 </> : <>

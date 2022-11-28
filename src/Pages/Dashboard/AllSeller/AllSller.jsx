@@ -31,7 +31,22 @@ const AllSller = () => {
             }
         })
 }
-
+const handleVerified = (id)=>{
+        fetch(`http://localhost:5000/users/${id}`, {
+            method: 'PUT', 
+            headers: {
+                
+            }
+        })
+        .then(res => res.json())
+        .then(data => {
+            if(data.modifiedCount > 0){
+                toast.success('verified successful.')
+                refetch();
+            }
+        })
+    
+}
 
     const allSeller = users.filter(user => user.role === "Seller")
     return (
@@ -56,7 +71,8 @@ const AllSller = () => {
                                 <td>{seller.name}</td>
                                 <td>{seller.email}</td>
                                 <td>{seller.role}</td>
-                                <td><button className="btn btn-active btn-accent" onClick={()=>handleVerified(seller._id)}>Verified Now</button></td>
+                                <td>{seller?.verified !== 'virefied' && <button className="btn btn-active btn-accent" onClick={()=>handleVerified(seller._id)}>Verified Now</button>}
+                                </td>
                                 <td><label  onClick={() => setDeletingSeller(seller)} htmlFor="confirmation-modal" className="btn btn-sm btn-error">Delete</label></td>
                             </tr>)
                         }

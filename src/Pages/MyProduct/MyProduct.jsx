@@ -35,7 +35,6 @@ const MyProduct = () => {
             .then(result => {
                 console.log(result);
                 toast.success(`Advertise successfully`);
-                // navigate('/dashboard/my-product')
             })
         
     }

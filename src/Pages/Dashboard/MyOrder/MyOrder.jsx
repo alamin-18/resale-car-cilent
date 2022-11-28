@@ -14,7 +14,8 @@ const MyOrder = () => {
     },[])
     const myOrder = order.filter(or => or?.email === user?.email)
    
-    
+    console.log(user)
+    console.log(myOrder)
     return (
         <div>
             <div className="overflow-x-auto">
