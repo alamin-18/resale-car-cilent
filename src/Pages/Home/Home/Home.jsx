@@ -4,6 +4,7 @@ import Catagory from '../Catagory/Catagory';
 import TrustedSeller from '../TrustedSeller/TrustedSeller';
 import AdvertiseIrem from './../AdvertiseItrem/AdvertiseIrem';
 import ClientInfo from '../ClientInfo/ClientInfo';
+import Testimonials from '../Testimonials/Testimonials';
 
 const Home = () => {
     return (
@@ -13,6 +14,7 @@ const Home = () => {
             <AdvertiseIrem></AdvertiseIrem>
             <TrustedSeller></TrustedSeller>
             <ClientInfo></ClientInfo>
+            <Testimonials></Testimonials>
         </div>
     );
 };
